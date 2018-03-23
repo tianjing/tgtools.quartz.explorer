@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: white;
+        }
+    </style>
+
+    <script type="application/javascript">
+        document.write('<script src="../../../../js/boot.js" type="text/javascript"><\/script>');
+    document.write('<script src="../../../../js/miniuiboot.js" type="text/javascript"><\/script>');
+    document.write('<script src="js/tgtools.js" type="text/javascript"><\/script>');
+    document.write('<script src="js/cronvalid.js" type="text/javascript"><\/script>');
+    document.write('<script src="js/edit.js" type="text/javascript"><\/script>');
+    </script>
+</head>
+<body>
+<div id="form1" >
+    <input name="id" class="mini-hidden" />
+    <table>
+
+        <tr>
+            <td>
+                <label>jobName：</label>
+            </td>
+            <td>
+                <input id="jobName1"  name="jobName" width="250" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>springBean：</label>
+            </td>
+            <td>
+                <input id="springBean1" name="springBean" width="250" class="mini-textbox" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>beanClass：</label>
+            </td>
+            <td>
+                <input id="beanClass1" name="beanClass" width="250" class="mini-textbox" required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label >methodName：</label>
+            </td>
+            <td>
+                <input id="methodName1" name="methodName" width="250" class="mini-textbox"  required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                cronExpression：
+            </td>
+            <td>
+                <input id="cronExpression1" name="cronExpression" width="250" class="mini-textbox"  required="true"  onvalidation="onCronValidation" />
+                <a class="mini-button" onclick="openCron();" >cron表达式查询</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                isConcurrent：
+            </td>
+            <td>
+                <input id="isConcurrent1" name="isConcurrent" width="250" class="mini-textbox"  required="true" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                description：
+            </td>
+            <td>
+                <input id="description1" name="description" width="250" class="mini-textarea" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                jobStatus：
+            </td>
+            <td>
+                <input id="jobStatus1" name="jobStatus" width="250" class="mini-textbox"  required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                jobGroup：
+            </td>
+            <td>
+                <input id="jobGroup1" name="jobGroup" width="250" class="mini-textbox"  required="true" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <input value="保存" type="button" onclick="submitForm()" />
+                <input value="关闭" type="button" onclick="closeForm()"/>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
