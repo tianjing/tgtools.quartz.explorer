@@ -34,6 +34,7 @@
             </td>
             <td>
                 <input id="jobName1"  name="jobName" width="250" class="mini-textbox" required="true" />
+                （老平台服务为服务目录名称；其他情况随意）
             </td>
         </tr>
         <tr>
@@ -42,6 +43,7 @@
             </td>
             <td>
                 <input id="springBean1" name="springBean" width="250" class="mini-textbox" />
+                （如果使用老平台服务这里填写service全路径:com.test.TestServices;其他情况随意）
             </td>
         </tr>
         <tr>
@@ -50,6 +52,7 @@
             </td>
             <td>
                 <input id="beanClass1" name="beanClass" width="250" class="mini-textbox" required="true"/>
+                老平台服务为tgtools.quartz.explorer.task.ServiceJob；其他情况填写job类的全名称，如:com.test.MyJob）
             </td>
         </tr>
         <tr>
@@ -57,7 +60,7 @@
                 <label >methodName：</label>
             </td>
             <td>
-                <input id="methodName1" name="methodName" width="250" class="mini-textbox"  required="true" />
+                <input id="methodName1" name="methodName" width="250" class="mini-textbox"  required="true"  value="none" />
             </td>
         </tr>
         <tr>
@@ -74,7 +77,7 @@
                 isConcurrent：
             </td>
             <td>
-                <input id="isConcurrent1" name="isConcurrent" width="250" class="mini-textbox"  required="true" />
+                <input id="isConcurrent1" name="isConcurrent" width="250" class="mini-textbox"  required="true" value="1" />
             </td>
         </tr>
 
@@ -92,7 +95,7 @@
                 jobStatus：
             </td>
             <td>
-                <input id="jobStatus1" name="jobStatus" width="250" class="mini-textbox"  required="true" />
+                <input id="jobStatus1" name="jobStatus" width="250" class="mini-textbox"  required="true" value="0"/>
             </td>
         </tr>
         <tr>
@@ -100,7 +103,7 @@
                 jobGroup：
             </td>
             <td>
-                <input id="jobGroup1" name="jobGroup" width="250" class="mini-textbox"  required="true" />
+                <input id="jobGroup1" name="jobGroup" width="250" class="mini-textbox"  required="true" value="job" />
             </td>
         </tr>
 

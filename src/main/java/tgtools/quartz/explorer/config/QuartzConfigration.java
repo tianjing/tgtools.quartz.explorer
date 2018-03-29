@@ -54,7 +54,7 @@ public class QuartzConfigration {
         org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
         config.setMapUnderscoreToCamelCase(true);
         factoryBean.setConfiguration(config);
-        factoryBean.setMapperLocations(new Resource[]{new UrlResource(ReflectionUtil.getResource("tgtools/quartz/explorer/mybatis/"+getMapperName()))});
+        factoryBean.setMapperLocations(new Resource[]{new UrlResource(ReflectionUtil.getResource("tgtools/quartz/explorer/mybatis/" + getMapperName()))});
         return factoryBean.getObject();
 
     }
@@ -66,15 +66,18 @@ public class QuartzConfigration {
                 dbtype = tgtools.db.DataBaseFactory.getDefault().getDataBaseType();
             }
         }
-        return dbtype;    }
+        if(!"dm6".equals(dbtype)) {
+            return StringUtil.EMPTY_STRING;
+        }
+        return dbtype;
+    }
 
     protected String getMapperName() {
-        String dbtype=getDataBaseType();
-        if(StringUtil.isNullOrEmpty(dbtype))
-        {
+        String dbtype = getDataBaseType();
+        if (StringUtil.isNullOrEmpty(dbtype)) {
             return "TaskMapper.xml";
         }
-        return "TaskMapper_"+dbtype+".xml";
+        return "TaskMapper_" + dbtype + ".xml";
     }
 
     @Bean

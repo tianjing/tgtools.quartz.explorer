@@ -50,8 +50,9 @@ function openCron()
 };
 function onCronValidation(e) {
     if (e.isValid) {
-        if (CronExpressionValidator.validateCronExpression(e.value) == false) {
-            e.errorText = "Cron 表达式格式错误";
+        var res=myCheckCron(e.value);
+        if (res != true) {
+            e.errorText = res;
             e.isValid = false;
         }
     }
