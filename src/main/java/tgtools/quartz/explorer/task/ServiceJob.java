@@ -19,6 +19,7 @@ public class ServiceJob implements Job {
     JARLoader jar = new JARLoader(ClassLoader.getSystemClassLoader());
 
 
+    @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         String jobname = context.getJobDetail().getKey().getName();
         String path = tgtools.web.platform.Platform.getServerPath() + "Services/" + jobname;
@@ -37,12 +38,14 @@ public class ServiceJob implements Job {
                 BaseService service = (BaseService) task;
                 TaskContext cont = new TaskContext();
                 cont.put("info", entity);
+                cont.put("jobContext",context);
                 if (service.canRun()) {
                     service.run(cont);
                 }
             } else if (task instanceof Task) {
                 TaskContext cont = new TaskContext();
                 cont.put("info", entity);
+                cont.put("jobContext",context);
                 ((Task) task).run(cont);
             }
         } catch (Throwable e) {

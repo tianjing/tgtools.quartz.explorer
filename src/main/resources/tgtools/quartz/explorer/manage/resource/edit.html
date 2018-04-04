@@ -52,7 +52,10 @@
             </td>
             <td>
                 <input id="beanClass1" name="beanClass" width="250" class="mini-textbox" required="true"/>
-                老平台服务为tgtools.quartz.explorer.task.ServiceJob；其他情况填写job类的全名称，如:com.test.MyJob）
+                老平台服务为tgtools.quartz.explorer.task.ServiceJob；可并发，其他情况填写job类的全名称，如:com.test.MyJob）<br/>
+                tgtools.quartz.explorer.task.ConcurrentServiceJob  不能并发<br/>
+                tgtools.quartz.explorer.task.PersistJonDataServiceJob 不能并发且保存JobDataMap<br/>
+
             </td>
         </tr>
         <tr>
