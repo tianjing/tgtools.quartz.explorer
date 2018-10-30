@@ -1,7 +1,7 @@
 package tgtools.quartz.explorer.utils;
 
 
-import org.apache.log4j.Logger;
+
 import org.quartz.*;
 import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.impl.matchers.GroupMatcher;
@@ -24,7 +24,6 @@ import java.util.Set;
  */
 @Service
 public class QuartzManager {
-	public final Logger log = Logger.getLogger(this.getClass());
 	// private SchedulerFactoryBean schedulerFactoryBean
 	// =SpringContextHolder.getBean(SchedulerFactoryBean.class);
 	// @Autowired
