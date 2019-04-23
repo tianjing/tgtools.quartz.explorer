@@ -29,7 +29,7 @@ public class QuartzController {
     public ResposeData get(@RequestParam("id") int pIndex) throws IOException {
         ResposeData entity = new ResposeData();
         Map<String, Object> param = new HashMap<String, Object>();
-        TaskDO taskScheduleJob = taskScheduleJobService.get((long)pIndex);
+        TaskDO taskScheduleJob = taskScheduleJobService.get((long) pIndex);
         entity.setSuccess(true);
         entity.setData(taskScheduleJob);
         return entity;
@@ -39,6 +39,8 @@ public class QuartzController {
     @ResponseBody
     public GridData list(@RequestParam("pageIndex") int pIndex, @RequestParam("pageSize") int pPageSize) throws IOException {
         GridData entity = new GridData();
+        pIndex = 0;
+        pPageSize = Integer.MAX_VALUE - 1;
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("offset", pIndex * pPageSize);
         param.put("limit", pPageSize);
@@ -79,12 +81,12 @@ public class QuartzController {
 
     @RequestMapping(value = "/remove", method = {RequestMethod.POST})
     @ResponseBody
-    public ResposeData remove(@RequestBody HashMap<String,Object> params) throws IOException {
-        Integer id =(Integer)params.get("id");
+    public ResposeData remove(@RequestBody HashMap<String, Object> params) throws IOException {
+        Integer id = (Integer) params.get("id");
         ResposeData result = new ResposeData();
         result.setSuccess(false);
         result.setData("操作失败");
-        if (taskScheduleJobService.remove((long)id) > 0) {
+        if (taskScheduleJobService.remove((long) id) > 0) {
             result.setSuccess(true);
             result.setData("操作成功");
             return result;
@@ -94,9 +96,9 @@ public class QuartzController {
 
     @RequestMapping(value = "/changeJobStatus", method = {RequestMethod.POST})
     @ResponseBody
-    public ResposeData changeJobStatus(@RequestBody HashMap<String,Object> params) throws IOException {
-        Integer id =(Integer)params.get("id");
-        String cmd =(String)params.get("cmd");
+    public ResposeData changeJobStatus(@RequestBody HashMap<String, Object> params) throws IOException {
+        Integer id = (Integer) params.get("id");
+        String cmd = (String) params.get("cmd");
 
         ResposeData result = new ResposeData();
         result.setSuccess(false);
@@ -110,7 +112,7 @@ public class QuartzController {
             label = "停止";
         }
         try {
-            taskScheduleJobService.changeStatus((long)id, cmd);
+            taskScheduleJobService.changeStatus((long) id, cmd);
             result.setSuccess(true);
             result.setData("任务" + label + "成功");
             return result;
