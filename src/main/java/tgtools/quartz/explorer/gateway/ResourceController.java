@@ -1,6 +1,8 @@
 package tgtools.quartz.explorer.gateway;
 
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tgtools.util.FileUtil;
 import tgtools.util.ReflectionUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,22 +23,40 @@ public class ResourceController {
 
     @RequestMapping(value = "/resource/**")
     public void get(HttpServletRequest pRequest, HttpServletResponse pResponse) {
-        String url =pRequest.getRequestURI();
-        String file =url.substring(url.indexOf("manage"));
-        int end=file.indexOf("?");
-        if(end>=0) {
-            file = file.substring(0, file.indexOf("?"));
-        }
-        file ="tgtools/quartz/explorer/"+file;
-        try{
-            copyAndClose(ReflectionUtil.getResourceAsStream(file), pResponse.getOutputStream());
+        setContentType(pRequest, pResponse);
+        try {
+            copyAndClose(ReflectionUtil.getResourceAsStream(getResourcePath(pRequest, pResponse)), pResponse.getOutputStream());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    protected String getResourcePath(HttpServletRequest pRequest, HttpServletResponse pResponse) {
+        String url = pRequest.getRequestURI();
+        String file = url.substring(url.indexOf("manage"));
+        int end = file.indexOf("?");
+        if (end >= 0) {
+            file = file.substring(0, file.indexOf("?"));
+        }
+        return "tgtools/quartz/explorer/" + file;
+    }
 
-    private void copyAndClose(InputStream pInputStream, OutputStream pOutputStream) {
+    protected void setContentType(HttpServletRequest pRequest, HttpServletResponse pResponse) {
+        String vUrl = pRequest.getRequestURI();
+        String vExtName = FileUtil.getExtensionName(vUrl);
+        if ("js".equals(vExtName)) {
+            pResponse.setContentType("application/x-javascript");
+        } else if ("css".equals(vExtName)) {
+            pResponse.setContentType("text/css");
+        } else if ("html".equals(vExtName)) {
+            pResponse.setContentType(MimeTypeUtils.TEXT_HTML_VALUE);
+        } else {
+            pResponse.setContentType(MimeTypeUtils.TEXT_PLAIN_VALUE);
+        }
+
+    }
+
+    protected void copyAndClose(InputStream pInputStream, OutputStream pOutputStream) {
         if (null == pOutputStream) {
             closeStream(pInputStream);
             return;
